@@ -49,13 +49,15 @@ double evaluate_rpn(IT it, IT end)
 
 int main()
 {
+#if 1
     try {
         cout << evaluate_rpn(istream_iterator<string>{cin}, {}) << '\n';
     } catch (const invalid_argument &e) {
         cout << "Invalid operator: " << e.what() << '\n';
     }
+#endif
 
-#if 0
+#if 1
     stringstream s {"3 2 1 + * 2 /"};
     cout << evaluate_rpn(istream_iterator<string>{s}, {}) << '\n';
 

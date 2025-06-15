@@ -2,29 +2,29 @@
 #include <iterator>
 #include <numeric>
 
-template <typename T>
-auto filter(T predicate)
-{
-    return [=] (auto reduce_fn) {
-        return [=] (auto accumulator, auto input) {
-            if (predicate(input)) {
-                return reduce_fn(accumulator, input);
-            } else {
-                return accumulator;
-            }
-        };
-    };
-}
+//template <typename T>
+//auto filter(T predicate)
+//{
+//    return [=] (auto reduce_fn) {
+//        return [=] (auto accumulator, auto input) {
+//            if (predicate(input)) {
+//                return reduce_fn(accumulator, input);
+//            } else {
+//                return accumulator;
+//            }
+//        };
+//    };
+//}
 
-template <typename T>
-auto map(T fn)
-{
-    return [=] (auto reduce_fn) {
-        return [=] (auto accumulator, auto input) {
-            return reduce_fn(accumulator, fn(input));
-        };
-    };
-}
+//template <typename T>
+//auto map(T fn)
+//{
+//    return [=] (auto reduce_fn) {
+//        return [=] (auto accumulator, auto input) {
+//            return reduce_fn(accumulator, fn(input));
+//        };
+//    };
+//}
 
 int main()
 {
@@ -39,12 +39,25 @@ int main()
         return ++it;
     });
 
+    auto transform_if =  [=] (auto accumulator, auto input) {
+        if (even(input)) {
+            return copy_and_advance(accumulator, twice(input));
+        } else {
+            return accumulator;
+        }
+    };
+
+
+//    std::accumulate(it, end_it,
+//            std::ostream_iterator<int>{std::cout, ", "},
+//            filter(even)(
+//                map(twice)(
+//                    copy_and_advance
+//                )
+//            ));
+
     std::accumulate(it, end_it,
             std::ostream_iterator<int>{std::cout, ", "},
-            filter(even)(
-                map(twice)(
-                    copy_and_advance
-                )
-            ));
+            transform_if);
     std::cout << '\n';
 }

@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
-
+#include <string>
 using namespace std;
 
 string filter_punctuation(const string &s)
@@ -26,7 +26,9 @@ int main()
         max_word_len = max<int>(max_word_len, filtered.length());
         ++words[filtered];
     }
-
+    for (const auto & [word, count] : words) {
+        cout << setw(max_word_len + 2) << word << " #" << count << '\n';
+    }
     vector<pair<string, size_t>> word_counts;
     word_counts.reserve(words.size());
 

@@ -33,16 +33,16 @@ public:
     }
 };
 
-namespace std {
+//namespace std {
 
-template <>
-struct iterator_traits<zip_iterator> {
-    using iterator_category = std::forward_iterator_tag;
-    using value_type = std::pair<double, double>;
-    using difference_type = long int;
-};
+//template <>
+//struct iterator_traits<zip_iterator> {
+//    using iterator_category = std::forward_iterator_tag;
+//    using value_type = std::pair<double, double>;
+//    using difference_type = long int;
+//};
 
-}
+//}
 
 class zipper {
     using vec_type = std::vector<double>;
@@ -70,7 +70,7 @@ int main()
     const auto add_product ([](double sum, const auto &p) {
         return sum + p.first * p.second;
     });
-
+    auto it = begin(zipped);
     const auto scalar_product (accumulate(begin(zipped), end(zipped), 0.0, add_product));
 
     cout << scalar_product << '\n';

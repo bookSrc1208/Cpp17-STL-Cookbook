@@ -11,12 +11,12 @@ int main()
     f.exceptions(f.failbit | f.badbit);
 
     try {
-        f.open("mmes.txt");
+        f.open("memes.txt");
 
         int i;
         f >> i;
 
-        cout << "integer has value: " << i << '\n';
+        cout <<f.fail()<< " integer has value: " << i << '\n';
     }
     catch (const ios_base::failure &e) {
         cerr << "Caught error: ";

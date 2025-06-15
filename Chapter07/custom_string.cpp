@@ -5,10 +5,14 @@
 using namespace std;
 
 static constexpr char tolow(char c) {
-    switch (c) {
-    case 'A'...'Z': return c - 'A' + 'a';
-    default:        return c;
+    if(c>='A' && c<='Z'){
+        return c-'A'+'a';
     }
+    return c;
+//    switch (c) {
+//    case 'A'...'Z': return c - 'A' + 'a';
+//    default:        return c;
+//    }
 }
 
 class lc_traits : public char_traits<char> {
@@ -70,6 +74,8 @@ ostream& operator<<(ostream& os, const ci_string& str) {
 
 int main()
 {
+    char A = 'A';
+    char Z = 'Z';
     lc_string e {"Foo Bar Baz"};
 
     cout << "   string: "

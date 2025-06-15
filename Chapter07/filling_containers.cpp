@@ -4,6 +4,10 @@
 #include <iterator>
 #include <algorithm>
 #include <numeric>
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
@@ -38,4 +42,41 @@ int main()
              << " : " << desc
              << ", " << year << '\n';
     }
+    return 0;
+}
+
+
+int main1()
+{
+    std::stringstream ss;
+    std::string in = "String with spaces, and embedded \"quotes\" too";
+    std::string out;
+    std::string out1;
+
+    auto show = [&](const auto& what) {
+        &what == &in
+            ?   std::cout << "read in     [" << in << "]\n"
+                          << "stored as   [" << ss.str() << "]\n"
+            :   std::cout << "written out [" << out << "]\n\n";
+    };
+
+    ss << std::quoted(in);
+    show(in);
+    ss >> std::quoted(out);
+    show(out);
+    ss << in;
+    ss >> std::quoted(out1);
+    show(out1);
+
+    ss.str(""); // clear the stream buffer
+
+    in = "String with spaces, and embedded $quotes$ too";
+    const char delim {'$'};
+    const char escape {'%'};
+
+    ss << std::quoted(in, delim, escape);
+    show(in);
+    ss >> std::quoted(out, delim, escape);
+    show(out);
+    return 0;
 }

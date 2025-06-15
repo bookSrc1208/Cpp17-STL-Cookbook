@@ -2,7 +2,7 @@
 #include <iterator>
 #include <map>
 #include <algorithm>
-
+#include <string>
 using namespace std;
 
 string filter_ws(const string &s)

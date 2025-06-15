@@ -11,6 +11,9 @@ using namespace experimental::filesystem;
 static vector<pair<size_t, string>> matches(const path &p, const regex &re)
 {
     vector<pair<size_t, string>> d;
+    if(!is_regular_file(p)){
+        return d;
+    }
     ifstream is {p.c_str()};
 
     string s;
@@ -43,8 +46,8 @@ int main(int argc, char *argv[])
         auto ms (matches(entry.path(), pattern));
 
         for (const auto &[number, content] : ms) {
-            cout << entry.path().c_str() << ":" << number
-                 << " - " << content << '\n';
+            cout << entry.path() << ":" << number
+                 << " - " << content << endl;
         }
     }
 }

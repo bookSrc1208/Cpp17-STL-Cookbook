@@ -96,6 +96,6 @@ int main()
                 pcreate("that "))));
 
     cout << "Setup done. Nothing executed yet.\n";
-
-    cout << result().get() << '\n';
+    auto retfun = result();
+    cout << retfun.get() << '\n';
 }

@@ -8,7 +8,7 @@ ostream& operator<<(ostream &os, const chrono::time_point<chrono::system_clock> 
 {
     const auto tt   (chrono::system_clock::to_time_t(t));
     const auto loct (std::localtime(&tt));
-    return os << put_time(loct, "%c");
+    return os << put_time(loct, "%F %T");//%c
 }
 
 using days = chrono::duration<

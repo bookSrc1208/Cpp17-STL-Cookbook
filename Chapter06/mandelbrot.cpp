@@ -52,7 +52,7 @@ int main()
         scaler(0, h, -1.0, 1.0)
     ));
 
-    auto i_to_xy ([=](int x) { return scale(x % w, x / w); });
+    auto i_to_xy ([=](int x) { return scale(x % w, x % w); });//x % w是转换为列，x % w是转换为行
 
     auto to_iteration_count ([=](int x) { return mandelbrot_iterations(i_to_xy(x)); });
 

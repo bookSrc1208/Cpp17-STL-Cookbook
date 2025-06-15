@@ -6,7 +6,9 @@
 #include <numeric>
 #include <valarray>
 #include <cmath>
-
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 using namespace std;
 
 using cmplx = complex<double>;
@@ -30,7 +32,7 @@ public:
     }
 };
 
-#if 0
+#if 1
 csignal fourier_transform(const csignal &s, bool back = false)
 {
     csignal t(s.size());

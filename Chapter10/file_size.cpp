@@ -39,6 +39,6 @@ int main(int argc, char *argv[])
 
     for (const auto &entry : directory_iterator{dir}) {
         cout << setw(5) << right << size_string(entry_size(entry))
-             << " " << entry.path().filename().c_str() << '\n';
+             << " " << entry.path().filename()<< '\n';
     }
 }

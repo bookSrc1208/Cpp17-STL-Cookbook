@@ -3,6 +3,7 @@
 #include <iterator>
 #include <unordered_map>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -16,14 +17,16 @@ string word_num(int i) {
     if (match == end(m)) { return "unknown"; }
     return match->second;
 };
-
+//class bork;
+//ostream& operator<<(ostream &os, const bork &b);
 struct bork {
     int borks;
 
     bork(int i) : borks{i} {}
 
     void print(ostream& os) const {
-        fill_n(ostream_iterator<string>{os, " "}, borks, "bork!"s);
+        const auto ss = string("bork!");
+        fill_n(ostream_iterator<string>{os, " "}, borks, ss);
     }
 };
 
@@ -56,4 +59,5 @@ int main()
     cout << '\n';
 
     copy(begin(v), end(v), ostream_iterator<bork>{cout, "\n"});
+
 }
